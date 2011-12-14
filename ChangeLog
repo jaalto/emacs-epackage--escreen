@@ -1,0 +1,7 @@
+2011-12-14 Wed  Jari Aalto  <jari.aalto@cante.net>
+
+	* escreen.el (escreen-verbose): New user variable.
+	(escreen-with-verbose): New.
+	(escreen-create-screen): Use `escreen-with-verbose'
+	(escreen-goto-screen): Use `escreen-with-verbose'.
+	Add argument VERBOSE.
