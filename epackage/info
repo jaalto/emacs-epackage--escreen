@@ -1,0 +1,30 @@
+Package: escreen
+Section: frames
+License: GPL-2+
+Depends: emacs (>= 22)
+Status: unmaintained
+Compat:
+Maintainer: Jari Aalto <jari.aalto@cante.net>
+Bugs:
+Upstream: Noah Friedman <friedman@splode.com>
+Upstream-Bugs:
+Vcs-Type: http
+Vcs-Url: http://www.splode.com/~friedman/software/emacs-lisp/src/escreen.el
+Vcs-Browser:
+Homepage: http://www.splode.com/~friedman/software/emacs-lisp
+Wiki: http://www.emacswiki.org/emacs/EmacsScreen
+Commentary:
+Description: emulation of screen(1) window configuration save/restore
+ This is a sort of session manager for emacs, inspired by the unix
+ screen program. This version works in every emacs version and variant
+ I've ever gotten my hands on, in both X and ASCII terminal mode, so
+ it's pretty portable and gives you a fairly consistent interface for
+ switching back and forth between different session configurations,
+ even though some if its functionality has been duplicated by standard
+ facilities in some newer versions of Emacs.
+ .
+ You can save and restore arbitrary data when switching
+ configurations. Among some of the default things saved are the window
+ sizes and layout, buffer marks, the state of narrowed regions (so you
+ can create two narrowed views of the same buffer simply by switching
+ screens), menu bars, buffer order, etc.
