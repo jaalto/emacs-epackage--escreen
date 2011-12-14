@@ -65,6 +65,11 @@
   :group 'escreen
   :group 'extensions)
 
+(defcustom escreen-verbose t
+  "*If non-nil, display informational messages."
+  :type 'integer
+  :group 'escreen)
+
 (defcustom escreen-max-screens 10
   "*Maximum number of screens that may be created."
   :type 'integer
@@ -303,6 +308,13 @@ If called with no prefix argument, toggle current state."
               (t
                (>= (prefix-numeric-value prefix) 0)))))
 
+(put 'escreen-with-verbose 'lisp-indent-function 0)
+(defmacro escreen-with-verbose (&rest body)
+  "Run BODY if escreen-verbose is non-nil."
+  `(if escreen-verbose
+       (progn
+	 ,@body)))
+
 
 (defun escreen-create-screen ()
   "Create a new screen and switch to it.
@@ -338,11 +350,14 @@ New screen will display one window with the buffer specified by
     ;; this is just
     (switch-to-buffer escreen-new-screen-default-buffer)
     ;; Save new window configuration so that it's in the alist.
-    (escreen-save-current-screen-configuration))
-  ;; We run this hook because, in a sense, we have gone to a new
-  ;; screen. but we don't actually call escreen-goto-screen because of the
-  ;; extra setup work here.
-  (run-hooks 'escreen-goto-screen-hook))
+    (escreen-save-current-screen-configuration)
+    ;; We run this hook because, in a sense, we have gone to a new
+    ;; screen. but we don't actually call escreen-goto-screen because of the
+    ;; extra setup work here.
+    (escreen-with-verbose
+      (if (interactive-p)
+	  (message "Escreen (new) %d" new-screen-number)))
+    (run-hooks 'escreen-goto-screen-hook)))
 
 (defun escreen-kill-screen (&optional number)
   "Kill current screen, or screen given by optional argument NUMBER.
@@ -385,11 +400,16 @@ Switch to previous screen if killing active one."
     (escreen-save-current-screen-configuration)))
 
 
-(defun escreen-goto-screen (number &optional dont-update-current)
+(defun escreen-goto-screen (number &optional dont-update-current verbose)
   "Switch to screen number N.
 Optional arg DONT-UPDATE-CURRENT means don't save the current screen
-configuration, though this isn't intended to be used interactively."
-  (interactive "NGo to escreen number: ")
+configuration, though this isn't intended to be used interactively.
+If VERBOSE is non-nil, display current screen number."
+  (interactive
+   (list
+    (string-to-number (read-string "NGo to escreen number: "))
+    nil
+    'verbose))
   (run-hooks 'escreen-goto-screen-before-hook)
   (let ((screen-data (escreen-configuration-escreen number)))
     (or screen-data
@@ -401,6 +421,9 @@ configuration, though this isn't intended to be used interactively."
     (or dont-update-current
         (setq escreen-last-screen-number escreen-current-screen-number))
     (setq escreen-current-screen-number number))
+  (escreen-with-verbose
+    (if verbose
+	(message "Escreen %d" number)))
   (run-hooks 'escreen-goto-screen-hook))
 
 (defun escreen-goto-last-screen ()
@@ -410,7 +433,7 @@ configuration, though this isn't intended to be used interactively."
                (escreen-get-next-screen-number escreen-last-screen-number)
              escreen-last-screen-number)))
     (setq escreen-last-screen-number escreen-current-screen-number)
-    (escreen-goto-screen n)))
+    (escreen-goto-screen n nil (interactive-p))))
 
 (defun escreen-goto-prev-screen (&optional n)
   "Switch to the previous screen.
