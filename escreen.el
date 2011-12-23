@@ -309,6 +309,7 @@ If called with no prefix argument, toggle current state."
                (>= (prefix-numeric-value prefix) 0)))))
 
 (put 'escreen-with-verbose 'lisp-indent-function 0)
+(put 'escreen-with-verbose 'edebug-form-spec '(body))
 (defmacro escreen-with-verbose (&rest body)
   "Run BODY if escreen-verbose is non-nil."
   `(if escreen-verbose
@@ -472,16 +473,16 @@ If prefix arg N given, jump to the Nth next screen."
             i (1+ i)))
     (escreen-goto-screen screen-number)))
 
-(defun escreen-goto-screen-0 () (interactive) (escreen-goto-screen 0))
-(defun escreen-goto-screen-1 () (interactive) (escreen-goto-screen 1))
-(defun escreen-goto-screen-2 () (interactive) (escreen-goto-screen 2))
-(defun escreen-goto-screen-3 () (interactive) (escreen-goto-screen 3))
-(defun escreen-goto-screen-4 () (interactive) (escreen-goto-screen 4))
-(defun escreen-goto-screen-5 () (interactive) (escreen-goto-screen 5))
-(defun escreen-goto-screen-6 () (interactive) (escreen-goto-screen 6))
-(defun escreen-goto-screen-7 () (interactive) (escreen-goto-screen 7))
-(defun escreen-goto-screen-8 () (interactive) (escreen-goto-screen 8))
-(defun escreen-goto-screen-9 () (interactive) (escreen-goto-screen 9))
+(defun escreen-goto-screen-0 () (interactive) (escreen-goto-screen 0 t))
+(defun escreen-goto-screen-1 () (interactive) (escreen-goto-screen 1 t))
+(defun escreen-goto-screen-2 () (interactive) (escreen-goto-screen 2 t))
+(defun escreen-goto-screen-3 () (interactive) (escreen-goto-screen 3 t))
+(defun escreen-goto-screen-4 () (interactive) (escreen-goto-screen 4 t))
+(defun escreen-goto-screen-5 () (interactive) (escreen-goto-screen 5 t))
+(defun escreen-goto-screen-6 () (interactive) (escreen-goto-screen 6 t))
+(defun escreen-goto-screen-7 () (interactive) (escreen-goto-screen 7 t))
+(defun escreen-goto-screen-8 () (interactive) (escreen-goto-screen 8 t))
+(defun escreen-goto-screen-9 () (interactive) (escreen-goto-screen 9 t))
 
 
 (defun escreen-get-current-screen-number ()

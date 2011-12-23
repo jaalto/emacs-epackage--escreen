@@ -1,3 +1,9 @@
+2011-12-23 Sat  Jari Aalto  <jari.aalto@cante.net>
+
+	* escreen.el (escreen-goto-screen-0..9): Call
+	`escreen-goto-screen-5' with 2nd (nil)
+	and 3rd parameter (verbose)
+
 2011-12-14 Wed  Jari Aalto  <jari.aalto@cante.net>
 
 	* escreen.el (escreen-verbose): New user variable.
