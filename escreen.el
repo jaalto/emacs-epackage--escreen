@@ -473,16 +473,16 @@ If prefix arg N given, jump to the Nth next screen."
             i (1+ i)))
     (escreen-goto-screen screen-number)))
 
-(defun escreen-goto-screen-0 () (interactive) (escreen-goto-screen 0 t))
-(defun escreen-goto-screen-1 () (interactive) (escreen-goto-screen 1 t))
-(defun escreen-goto-screen-2 () (interactive) (escreen-goto-screen 2 t))
-(defun escreen-goto-screen-3 () (interactive) (escreen-goto-screen 3 t))
-(defun escreen-goto-screen-4 () (interactive) (escreen-goto-screen 4 t))
-(defun escreen-goto-screen-5 () (interactive) (escreen-goto-screen 5 t))
-(defun escreen-goto-screen-6 () (interactive) (escreen-goto-screen 6 t))
-(defun escreen-goto-screen-7 () (interactive) (escreen-goto-screen 7 t))
-(defun escreen-goto-screen-8 () (interactive) (escreen-goto-screen 8 t))
-(defun escreen-goto-screen-9 () (interactive) (escreen-goto-screen 9 t))
+(defun escreen-goto-screen-0 () (interactive) (escreen-goto-screen 0 nil (interactive-p)))
+(defun escreen-goto-screen-1 () (interactive) (escreen-goto-screen 1 nil (interactive-p)))
+(defun escreen-goto-screen-2 () (interactive) (escreen-goto-screen 2 nil (interactive-p)))
+(defun escreen-goto-screen-3 () (interactive) (escreen-goto-screen 3 nil (interactive-p)))
+(defun escreen-goto-screen-4 () (interactive) (escreen-goto-screen 4 nil (interactive-p)))
+(defun escreen-goto-screen-5 () (interactive) (escreen-goto-screen 5 nil (interactive-p)))
+(defun escreen-goto-screen-6 () (interactive) (escreen-goto-screen 6 nil (interactive-p)))
+(defun escreen-goto-screen-7 () (interactive) (escreen-goto-screen 7 nil (interactive-p)))
+(defun escreen-goto-screen-8 () (interactive) (escreen-goto-screen 8 nil (interactive-p)))
+(defun escreen-goto-screen-9 () (interactive) (escreen-goto-screen 9 nil (interactive-p)))
 
 
 (defun escreen-get-current-screen-number ()
