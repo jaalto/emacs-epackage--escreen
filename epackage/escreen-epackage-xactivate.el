@@ -22,7 +22,7 @@
 (autoload 'escreen-first-unused-screen-number   "escreen")
 (autoload 'escreen-goto-screen-1                "escreen")
 
-(defun escreen-epkg-activate-preset ()
+(defun escreen-epackage-activate-preset ()
   "Preload screens 0..9."
   (interactive)
   (let (nbr)
@@ -32,24 +32,24 @@
 	(setq nbr (1+ nbr))))
     (escreen-goto-screen-1)))
 
-(defun escreen-epkg-activate-init ()
+(defun escreen-epackage-activate-init ()
   "Initialize escreen."
   (when escreen-map
     (escreen-install)
-    (escreen-epkg-activate-preset)
+    (escreen-epackage-activate-preset)
     ;;(define-key escreen-map "'" 'escreen-goto-last-screen)
     (define-key escreen-map "\M-x" 'escreen-menu)))
 
-(defun escreen-epkg-activate-setup ()
+(defun escreen-epackage-activate-setup ()
   "Escreen setup"
   (interactive)
   (when (or (require 'escreen)
 	    (load "escreen" 'noerr))
-    (escreen-epkg-activate-init)))
+    (escreen-epackage-activate-init)))
 
 ;; If escreen is not yet active
 (unless (eq (lookup-key global-map escreen-prefix-char)
 	    'escreen-prefix)
-  (global-set-key escreen-prefix-char 'escreen-epkg-activate-setup))
+  (global-set-key escreen-prefix-char 'escreen-epackage-activate-setup))
 
 (provide 'escreen-xactivate)

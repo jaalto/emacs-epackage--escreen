@@ -274,11 +274,11 @@ to update the prefix in the global keymap."
   (global-set-key escreen-prefix-char 'escreen-prefix)
 
   ;; Install screen number on global-mode-string
+  (or global-mode-string (setq global-mode-string '("")))
   (and escreen-install-number-mode-format
-       (let ((elt '("" escreen-mode-line-format)))
-         (or (member elt global-mode-string)
-             (setq global-mode-string
-                   (cons elt global-mode-string)))))
+       (or (memq 'escreen-mode-line-format global-mode-string)
+	   (setq global-mode-string
+		 (append global-mode-string '(escreen-mode-line-format)))))
 
   (cond ((fboundp 'make-variable-frame-local)
          (escreen-mapc 'make-variable-frame-local

@@ -20,4 +20,4 @@
 (autoload 'escreen-get-active-screen-numbers    "escreen" "" t)
 (autoload 'escreen-help                         "escreen" "" t)
 (autoload 'escreen-menu                         "escreen" "" t)
-(provide 'escreen-epkg-install)
+(provide 'escreen-epackage-install)

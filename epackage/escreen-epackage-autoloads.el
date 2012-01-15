@@ -73,4 +73,4 @@
 (autoload 'escreen-menu                         "escreen" "" t)
 (autoload 'escreen-menu-mode                    "escreen" "" nil)
 (autoload 'escreen-enable-number-mode-if-more-than-one-screen "escreen" "" nil)
-(provide 'escreen-epkg-autoloads)
+(provide 'escreen-epackage-autoloads)
