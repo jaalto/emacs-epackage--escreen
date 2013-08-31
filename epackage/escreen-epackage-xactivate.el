@@ -2,7 +2,7 @@
 ;; Arrgange autoloading package. Pressing prefix key causes
 ;; loading the package and setting up empty 0-9 screens.
 
-(defvar escreen-prefix-char "\C-\\") ;; The default
+(defvar escreen-prefix-char (kbd "\C-\\")) ;; The default
 
 (eval-when-compile
   (defvar escreen-map))
@@ -29,22 +29,20 @@
     (when (setq nbr (escreen-first-unused-screen-number))
       (while (< nbr 10)
 	(escreen-create-screen)
-	(setq nbr (1+ nbr))))
-    (escreen-goto-screen-1)))
+	(setq nbr (1+ nbr)))
+      (escreen-goto-screen-1))))
 
 (defun escreen-epackage-activate-init ()
   "Initialize escreen."
   (when escreen-map
     (escreen-install)
-    (escreen-epackage-activate-preset)
-    ;;(define-key escreen-map "'" 'escreen-goto-last-screen)
-    (define-key escreen-map "\M-x" 'escreen-menu)))
+    (escreen-epackage-activate-preset)))
 
 (defun escreen-epackage-activate-setup ()
   "Escreen setup"
   (interactive)
-  (when (or (require 'escreen)
-	    (load "escreen" 'noerr))
+  (when (and (not (featurep 'escreen))
+	     (load "escreen" 'noerr))
     (escreen-epackage-activate-init)))
 
 ;; If escreen is not yet active
