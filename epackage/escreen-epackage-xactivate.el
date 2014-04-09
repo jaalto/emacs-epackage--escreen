@@ -41,8 +41,10 @@
 (defun escreen-epackage-activate-setup ()
   "Escreen setup"
   (interactive)
-  (when (and (not (featurep 'escreen))
-	     (load "escreen" 'noerr))
+  (when (eq (lookup-key global-map escreen-prefix-char)
+	    'escreen-epackage-activate-setup)
+    (unless (featurep 'escreen)
+      (load "escreen" 'noerr))
     (escreen-epackage-activate-init)))
 
 ;; If escreen is not yet active
